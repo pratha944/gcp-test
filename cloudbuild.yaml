@@ -11,4 +11,5 @@ steps:
       - '--cluster=autopilot-cluster-1'
       - '--location=us-west3'
       - '--namespace=gcp-test'
-    
+options:
+    logging: 'CLOUD_LOGGING_ONLY'
