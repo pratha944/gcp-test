@@ -1,0 +1,14 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/artifite/flask-hello:latest', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/artifite/flask-hello:latest']
+  - name: 'gcr.io/cloud-builders/gke-deloy'
+    args:
+      - 'run'
+      - '--filename=gke.yaml'
+      - '--image=gcr.io/artifite/flask-hello:latest'
+      - '--cluster=autopilot-cluster-1'
+      - '--location=us-west3'
+      - '--namespace=gcp-test'
+    
